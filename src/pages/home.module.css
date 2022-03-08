@@ -1,0 +1,17 @@
+.title {
+  font-weight: normal;
+}
+
+.imagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1000px) {
+  .title {
+    position: relative;
+    bottom: 10px;
+  }
+}
