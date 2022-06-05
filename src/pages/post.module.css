@@ -2,6 +2,7 @@
   position: absolute;
   top: 5vh;
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -10,14 +11,15 @@
 
 .leftBox {
   background: white;
-  width: 38vw;
+  width: 85vw;
   margin-left: 1vw;
   height: 100vh;
 }
 .image {
   width: 57vw;
-  height: 95vh;
-  margin-top: 10px;
+  height: 88vh;
+  margin-left: 1vw;
+  margin-top: 9vh;
 }
 
 .content {
@@ -26,6 +28,9 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .container {
+    top: 10vh;
+  }
   .leftBox {
     width: 100%;
     height: 50%;

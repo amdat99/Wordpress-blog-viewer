@@ -1,5 +1,6 @@
-.title {
-  font-weight: normal;
+.header {
+  margin-top: 3%;
+  margin-bottom: 2%;
 }
 
 .imagesContainer {
@@ -7,11 +8,4 @@
   flex-wrap: wrap;
   position: absolute;
   flex-direction: row;
-}
-
-@media screen and (max-width: 1000px) {
-  .title {
-    position: relative;
-    bottom: 10px;
-  }
 }

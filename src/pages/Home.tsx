@@ -28,10 +28,11 @@ function Home({ setCurrentPost }: Props) {
     },
     uncategorized ? "posts" : "posts" + currentCategory
   );
-  const { data: categories, fetchData: fetchCategories } = useFetchData(
-    { type: "get", route: "categories" },
-    "categories"
-  );
+  const {
+    data: categories,
+    fetchData: fetchCategories,
+    isFetching: fetchingCategories,
+  } = useFetchData({ type: "get", route: "categories" }, "categories");
 
   useEffect(() => {
     if (currentUrl) {
@@ -58,31 +59,29 @@ function Home({ setCurrentPost }: Props) {
 
   return (
     <div className="app">
+      <h1>View posts from a wordpress site</h1>
       {!posts && !currentUrl && <UrlInput url={url} setUrl={setUrl} />}
-      <h2 className={styles.title}>My portfolio</h2>
-      <span>
-        My everyday work is presented here,
-        <br /> for more check out my portfolio on behance
-      </span>
-      {categories && (
-        <PostMenu categories={categories} setCurrentCategory={setCurrentCategory} currentCategory={currentCategory} />
-      )}
+      <div className={styles.header}>
+        {categories && <PostMenu categories={categories} setCurrentCategory={setCurrentCategory} currentCategory={currentCategory} />}
+      </div>
+      {fetchingPosts && <h3>loading...</h3>}
       <div className={styles.imagesContainer}>
-        {posts
-          ? posts.map((post: any) => (
-              <PostContent
-                title={post?.title?.rendered}
-                embedData={post._embedded["wp:featuredmedia"]}
-                categoryMap={categoryMap}
-                content={post.content?.rendered}
-                categories={post.categories}
-                navigate={navigate}
-                setCurrentPost={setCurrentPost}
-                key={post.id}
-                id={post.id}
-              />
-            ))
-          : fetchingPosts && <h3>loading...</h3>}
+        {posts &&
+          !fetchingPosts &&
+          posts.map((post: any) => (
+            <PostContent
+              title={post?.title?.rendered}
+              embedData={post._embedded["wp:featuredmedia"]}
+              categoryMap={categoryMap}
+              content={post.content?.rendered}
+              categories={post.categories}
+              navigate={navigate}
+              setCurrentPost={setCurrentPost}
+              key={post.id}
+              id={post.id}
+            />
+          ))}
+        {posts && !posts?.length && !fetchingPosts && <h3>No posts found</h3>}
       </div>
     </div>
   );

@@ -52,6 +52,7 @@ const useFetchData = (options: Options, id: string, shouldPersist = false, shoul
       let dataString: string;
       try {
         const reqOptions = options;
+        //@ts-ignore
         reqOptions.url = reqOptions?.url || currentUrl;
         requestHandler(reqOptions).then((data: any) => {
           if (shouldCache) dataString = JSON.stringify(data);

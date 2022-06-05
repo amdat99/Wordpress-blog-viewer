@@ -6,22 +6,24 @@ type Props = {
   setUrl: Function;
 };
 function UrlInput({ url, setUrl }: Props) {
+  const onSubmit = (e: { preventDefault: () => void }) => {
+    let urlChar = "/";
+    e.preventDefault();
+    if (!url) {
+      return;
+    } else if (url[url.length - 1] === "/") {
+      urlChar = "";
+    }
+    localStorage.setItem("currentUrl", url + urlChar + "wp-json/wp/v2/");
+    window.location.reload();
+  };
+
   return (
-    <div className={styles.inputContainer}>
-      <label>
-        Enter the wordpress api url infollowing format: <br /> http://127.0.0.1:81/wordpress/wp-json/wp/v2/ <br />
-        (url must end in /)
-      </label>
-      <input value={url} onChange={(e) => setUrl(e.target.value)} />
-      <button
-        onClick={() => {
-          localStorage.setItem("currentUrl", url);
-          window.location.reload();
-        }}
-      >
-        Set
-      </button>
-    </div>
+    <form onSubmit={onSubmit} className={styles.inputContainer}>
+      <label>Enter your wordpress site url (E.g https://iamafoodblog.com/)</label>
+      <input autoFocus type="url" value={url} onChange={(e) => setUrl(e.target.value)} />
+      <button type="submit">Set</button>
+    </form>
   );
 }
 

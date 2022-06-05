@@ -35,7 +35,7 @@ function Post({ currentPost = null }: Props) {
 
   const sanitize = (html: string) => {
     return sanitizeHtml(html, {
-      allowedTags: ["b", "i", "em", "strong", "a", "p", "h1", "h2", "h3", "h4", "h5", "h6"],
+      allowedTags: ["b", "i", "em", "strong", "a", "p", "h1", "h2", "h3", "h4", "h5", "h6", "img"],
       allowedAttributes: { a: ["href"] },
     });
   };
@@ -46,14 +46,13 @@ function Post({ currentPost = null }: Props) {
         {post ? (
           <div className={styles.content}>
             <h2 style={{ fontWeight: "normal" }}>{post?.title}</h2>
-            <p dangerouslySetInnerHTML={{ __html: sanitize(post?.content) }}></p>
+            <p dangerouslySetInnerHTML={{ __html: post?.content }}></p>
             {post?.content}
           </div>
         ) : (
           isFetching && <h3 style={{ marginTop: "40%", marginLeft: "30%" }}>Loading...</h3>
         )}
       </div>
-      {post?.image && <img className={styles.image} src={post.image} alt="feature-image" />}
     </div>
   );
 }

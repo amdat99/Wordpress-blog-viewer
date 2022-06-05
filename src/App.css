@@ -1,3 +1,15 @@
+button {
+  background-color: #ffb835;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  margin: 3px;
+}
 .app {
   margin: 8%;
   margin-top: 3%;

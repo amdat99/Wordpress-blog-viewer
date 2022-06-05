@@ -57,9 +57,7 @@
 .menuContainer {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  right: 10vw;
-  top: 29vh;
+  flex-wrap: wrap;
 }
 
 .inputContainer {
@@ -67,10 +65,7 @@
   flex-direction: row;
   justify-content: center;
   flex-direction: column;
-  width: 70%;
-  height: 30%;
-  align-items: center;
-  position: absolute;
+  max-width: 35%;
   background: white;
   border-radius: 5px;
 }
